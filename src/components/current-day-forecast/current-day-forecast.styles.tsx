@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+	display: flex;
+	flex-direction: column;
 	width: 70%;
 	height: 100%;
 	padding: 2rem 0;
@@ -26,7 +28,7 @@ export const Content = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	height: 100%;
+	flex: auto;
 
 	p:nth-child(1) {
 		font-size: 7rem;
