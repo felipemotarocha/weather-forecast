@@ -49,14 +49,14 @@ type ConditionText =
 	| 'Patchy light snow with thunder'
 	| 'Moderate or heavy snow with thunder';
 
-type Location = {
+export type Location = {
 	country: string;
 	localtime: string;
 	name: string;
 	region: string;
 };
 
-type CurrentDay = {
+export type CurrentDay = {
 	temp_c: number;
 	is_day: number;
 	humidity: number;
