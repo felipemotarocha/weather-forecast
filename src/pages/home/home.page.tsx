@@ -1,16 +1,16 @@
-import React from 'react';
+import * as React from 'react';
 
 import { Container } from './home.styles';
-import { Current, Location } from '../../types/forecast-data.types';
+import { ForecastData } from '../../types/forecast-data.types';
 
 import CurrentDayForecast from '../../components/current-day-forecast/current-day-forecast.component';
 
 interface HomePageProps {
-	location: Location | null;
-	current: Current | null;
+	forecastData: ForecastData | null;
 }
 
-const HomePage: React.FunctionComponent<HomePageProps> = () => {
+const HomePage: React.FunctionComponent<HomePageProps> = ({ forecastData }) => {
+	console.log({ forecastData });
 	return (
 		<Container>
 			<CurrentDayForecast />

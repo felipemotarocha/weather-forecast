@@ -1,4 +1,4 @@
-type Condition =
+type ConditionText =
 	| 'Sunny'
 	| 'Clear'
 	| 'Partly cloudy'
@@ -56,9 +56,21 @@ export type Location = {
 	region: string;
 };
 
-export type Current = {
-	condition: Condition;
+export type CurrentDay = {
 	temp_c: number;
-	wind_mph: number;
+	is_day: number;
 	humidity: number;
+	wind_kph: number;
+	condition: {
+		text: ConditionText;
+		icon: string;
+	};
+	maxtemp_c: number;
+	mintemp_c: number;
+	daily_chance_of_rain: string;
+};
+
+export type ForecastData = {
+	location: Location;
+	currentDay: CurrentDay;
 };

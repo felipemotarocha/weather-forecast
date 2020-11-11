@@ -2,15 +2,16 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import { Current, Location } from '../../types/forecast-data.types';
+import {
+	CurrentDay,
+	ForecastData,
+	Location,
+} from '../../types/forecast-data.types';
 
 import HomePage from './home.page';
 
-export interface HomeContainerProps {}
-
-const HomeContainer: React.FunctionComponent<HomeContainerProps> = () => {
-	const [location, setLocation] = useState<Location | null>(null);
-	const [current, setCurrent] = useState<Current | null>(null);
+const HomeContainer: React.FunctionComponent = () => {
+	const [forecastData, setForecast] = useState<ForecastData | null>(null);
 
 	useEffect(() => {
 		const fetchForecastData = async () => {
@@ -18,11 +19,13 @@ const HomeContainer: React.FunctionComponent<HomeContainerProps> = () => {
 				data: {
 					location: { country, localtime, name, region },
 					current: {
-						condition: { text },
 						temp_c,
-						wind_mph,
+						is_day,
+						wind_kph,
 						humidity,
+						condition: { text, icon },
 					},
+					forecast: { forecastday },
 				},
 			} = await axios.get(
 				`https://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=São Paulo&days=7`
@@ -35,21 +38,30 @@ const HomeContainer: React.FunctionComponent<HomeContainerProps> = () => {
 				region,
 			};
 
-			const current: Current = {
-				condition: text,
+			const {
+				day: { maxtemp_c, mintemp_c, daily_chance_of_rain },
+			} = forecastday[0];
+			const currentDay: CurrentDay = {
 				temp_c,
-				wind_mph,
+				is_day,
 				humidity,
+				wind_kph,
+				condition: {
+					text,
+					icon,
+				},
+				maxtemp_c,
+				mintemp_c,
+				daily_chance_of_rain,
 			};
 
-			setLocation(location);
-			setCurrent(current);
+			setForecast({ location, currentDay });
 		};
 
 		fetchForecastData();
 	}, []);
 
-	return <HomePage location={location} current={current} />;
+	return <HomePage forecastData={forecastData} />;
 };
 
 export default HomeContainer;
