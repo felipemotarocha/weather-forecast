@@ -17,7 +17,7 @@ export const HeaderItem = styled.div`
 	align-items: center;
 
 	svg {
-		font-size: 3.5rem;
+		font-size: 4rem;
 	}
 `;
 
@@ -37,6 +37,6 @@ export const Content = styled.div`
 	}
 
 	p:nth-child(3) {
-		font-size: 1.5rem;
+		font-size: 1.4rem;
 	}
 `;
