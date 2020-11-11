@@ -61,7 +61,7 @@ const HomeContainer: React.FunctionComponent = () => {
 		fetchForecastData();
 	}, []);
 
-	return <HomePage forecastData={forecastData} />;
+	return forecastData ? <HomePage forecastData={forecastData} /> : null;
 };
 
 export default HomeContainer;

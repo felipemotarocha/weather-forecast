@@ -10,10 +10,9 @@ interface HomePageProps {
 }
 
 const HomePage: React.FunctionComponent<HomePageProps> = ({ forecastData }) => {
-	console.log({ forecastData });
 	return (
 		<Container>
-			<CurrentDayForecast />
+			<CurrentDayForecast forecastData={forecastData} />
 		</Container>
 	);
 };
