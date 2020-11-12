@@ -4,6 +4,10 @@ export const Container = styled.div`
 	display: flex;
 	align-items: center;
 	flex: 1;
+
+	&:nth-child(1) {
+		border-bottom: 1px solid #eee;
+	}
 `;
 
 export const Text = styled.div``;
