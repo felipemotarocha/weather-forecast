@@ -1,15 +1,16 @@
-import * as React from 'react';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import * as React from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 import {
 	CurrentDay,
 	ForecastData,
+	Hour,
 	Location,
-	NextSevenDays,
-} from '../../types/forecast-data.types';
+	NextTwoDays,
+} from "../../types/forecast-data.types";
 
-import HomePage from './home.page';
+import HomePage from "./home.page";
 
 const HomeContainer: React.FunctionComponent = () => {
 	const [forecastData, setForecast] = useState<ForecastData | null>(null);
@@ -56,7 +57,7 @@ const HomeContainer: React.FunctionComponent = () => {
 				daily_chance_of_rain,
 			};
 
-			let nextTwoDays: NextSevenDays = [];
+			let nextTwoDays: NextTwoDays = [];
 			forecastday.forEach((element: any, index: number) => {
 				if (index > 0) {
 					const {
@@ -66,9 +67,28 @@ const HomeContainer: React.FunctionComponent = () => {
 							maxtemp_c,
 							mintemp_c,
 							daily_chance_of_rain,
-							condition: { text, icon },
+							condition: { text: dayConditionText, icon: dayConditionIcon },
 						},
+						hour,
 					} = element;
+
+					let formattedHour: Hour = [];
+					for (let element of hour) {
+						const {
+							time,
+							temp_c,
+							condition: { text, icon },
+						} = element;
+						formattedHour = [
+							...formattedHour,
+							{
+								time,
+								temp_c,
+								condition: { text, icon },
+							},
+						];
+					}
+
 					nextTwoDays = [
 						...nextTwoDays,
 						{
@@ -77,7 +97,8 @@ const HomeContainer: React.FunctionComponent = () => {
 							maxtemp_c,
 							mintemp_c,
 							daily_chance_of_rain,
-							condition: { text, icon },
+							condition: { text: dayConditionText, icon: dayConditionIcon },
+							hour: formattedHour,
 						},
 					];
 				}

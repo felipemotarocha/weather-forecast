@@ -14,6 +14,7 @@ const HomePage: React.FunctionComponent<HomePageProps> = ({ forecastData }) => {
 	const {
 		currentDay: { is_day },
 	} = forecastData!;
+	console.log(forecastData);
 	return (
 		<Container isDay={is_day}>
 			<CurrentDayForecast forecastData={forecastData} />
