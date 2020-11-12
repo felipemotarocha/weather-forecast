@@ -6,6 +6,7 @@ import {
 	CurrentDay,
 	ForecastData,
 	Location,
+	NextSevenDays,
 } from '../../types/forecast-data.types';
 
 import HomePage from './home.page';
@@ -55,7 +56,30 @@ const HomeContainer: React.FunctionComponent = () => {
 				daily_chance_of_rain,
 			};
 
-			setForecast({ location, currentDay });
+			let nextSevenDays: NextSevenDays = [];
+			forecastday.forEach((element: any) => {
+				const {
+					day: {
+						avgtemp_c,
+						maxtemp_c,
+						mintemp_c,
+						daily_chance_of_rain,
+						condition: { text, icon },
+					},
+				} = element;
+				nextSevenDays = [
+					...nextSevenDays,
+					{
+						avgtemp_c,
+						maxtemp_c,
+						mintemp_c,
+						daily_chance_of_rain,
+						condition: { text, icon },
+					},
+				];
+			});
+
+			setForecast({ location, currentDay, nextSevenDays });
 		};
 
 		fetchForecastData();

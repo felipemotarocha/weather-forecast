@@ -70,7 +70,19 @@ export type CurrentDay = {
 	daily_chance_of_rain: string;
 };
 
+export type NextSevenDays = {
+	avgtemp_c: number;
+	maxtemp_c: number;
+	mintemp_c: number;
+	condition: {
+		text: ConditionText;
+		icon: string;
+	};
+	daily_chance_of_rain: string;
+}[];
+
 export type ForecastData = {
 	location: Location;
 	currentDay: CurrentDay;
+	nextSevenDays: NextSevenDays;
 };

@@ -11,6 +11,7 @@ interface HomePageProps {
 }
 
 const HomePage: React.FunctionComponent<HomePageProps> = ({ forecastData }) => {
+	console.log(forecastData);
 	return (
 		<Container>
 			<CurrentDayForecast forecastData={forecastData} />
