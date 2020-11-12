@@ -1,7 +1,8 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { Container } from './next-days-forecast.styles';
-import { ForecastData } from '../../types/forecast-data.types';
+import { Container } from "./next-days-forecast.styles";
+import { ForecastData } from "../../types/forecast-data.types";
+import DayForecastItem from "../day-forecast-item/day-forecast-item.component";
 
 export interface NextDaysForecastProps {
 	forecastData: ForecastData | null;
@@ -10,9 +11,12 @@ export interface NextDaysForecastProps {
 const NextDaysForecast: React.FunctionComponent<NextDaysForecastProps> = ({
 	forecastData,
 }) => {
+	const { nextTwoDays } = forecastData!;
 	return (
 		<Container>
-			<h1>next days forecast</h1>
+			{nextTwoDays.map((day) => (
+				<DayForecastItem day={day} />
+			))}
 		</Container>
 	);
 };
