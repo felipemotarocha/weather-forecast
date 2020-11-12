@@ -11,8 +11,11 @@ interface HomePageProps {
 }
 
 const HomePage: React.FunctionComponent<HomePageProps> = ({ forecastData }) => {
+	const {
+		currentDay: { is_day },
+	} = forecastData!;
 	return (
-		<Container>
+		<Container isDay={is_day}>
 			<CurrentDayForecast forecastData={forecastData} />
 			<NextDaysForecast forecastData={forecastData} />
 		</Container>
