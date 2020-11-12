@@ -15,7 +15,7 @@ const HomePage: React.FunctionComponent<HomePageProps> = ({ forecastData }) => {
 	return (
 		<Container>
 			<CurrentDayForecast forecastData={forecastData} />
-			<NextDaysForecast />
+			<NextDaysForecast forecastData={forecastData} />
 		</Container>
 	);
 };

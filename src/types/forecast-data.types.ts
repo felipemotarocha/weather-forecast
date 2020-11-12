@@ -71,6 +71,7 @@ export type CurrentDay = {
 };
 
 export type NextSevenDays = {
+	date: string;
 	avgtemp_c: number;
 	maxtemp_c: number;
 	mintemp_c: number;
@@ -84,5 +85,5 @@ export type NextSevenDays = {
 export type ForecastData = {
 	location: Location;
 	currentDay: CurrentDay;
-	nextSevenDays: NextSevenDays;
+	nextTwoDays: NextSevenDays;
 };

@@ -56,30 +56,34 @@ const HomeContainer: React.FunctionComponent = () => {
 				daily_chance_of_rain,
 			};
 
-			let nextSevenDays: NextSevenDays = [];
-			forecastday.forEach((element: any) => {
-				const {
-					day: {
-						avgtemp_c,
-						maxtemp_c,
-						mintemp_c,
-						daily_chance_of_rain,
-						condition: { text, icon },
-					},
-				} = element;
-				nextSevenDays = [
-					...nextSevenDays,
-					{
-						avgtemp_c,
-						maxtemp_c,
-						mintemp_c,
-						daily_chance_of_rain,
-						condition: { text, icon },
-					},
-				];
+			let nextTwoDays: NextSevenDays = [];
+			forecastday.forEach((element: any, index: number) => {
+				if (index > 0) {
+					const {
+						date,
+						day: {
+							avgtemp_c,
+							maxtemp_c,
+							mintemp_c,
+							daily_chance_of_rain,
+							condition: { text, icon },
+						},
+					} = element;
+					nextTwoDays = [
+						...nextTwoDays,
+						{
+							date,
+							avgtemp_c,
+							maxtemp_c,
+							mintemp_c,
+							daily_chance_of_rain,
+							condition: { text, icon },
+						},
+					];
+				}
 			});
 
-			setForecast({ location, currentDay, nextSevenDays });
+			setForecast({ location, currentDay, nextTwoDays });
 		};
 
 		fetchForecastData();
